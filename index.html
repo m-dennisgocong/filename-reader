@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filename Reader</title>
+</head>
+<style>
+    *,
+    *::before,
+    *::after{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: grid;
+        place-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1em;
+    }
+    label{
+       font-size: 1.2rem;
+    }
+    #output{
+        height: 50vh;
+        width: 100%;
+        padding: .1em .3em;
+        border: none;
+    }
+    button{
+        padding: .05em 1em;
+        border-radius: .3em;
+        line-height: 1.5;
+        margin-top: 1em;
+    }
+    button:active{
+        background-color: #fff;
+        color: #333;
+    }
+
+</style>
+<body>
+
+    <div class="container">
+        <label for="myfiles">Select a file:
+            <input multiple type="file" id="myfiles" name="myfiles">
+        </label> 
+        <textarea id="output"></textarea>
+        <button onclick="myFunction()">Copy</button>
+    <div>
+    
+    <script>
+
+        const output = document.getElementById('output');
+        const myFiles = document.querySelector('#myfiles');
+        const outputNumber = document.getElementById('number');
+
+        myFiles.addEventListener('change', () => {
+            const fileInput = document.querySelector('#myfiles');
+            const files = fileInput.files;
+            output.value = "";
+            for(let i=0; i < files.length; i++){
+                output.value += files[i].name.split('.')[0]+"\n"
+            }
+        });
+
+        function myFunction() {
+            const textarea = document.createElement('textarea');
+            document.body.appendChild(textarea);
+            textarea.value = output.value;
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        } 
+
+    </script>
+
+</body>
+</html>
