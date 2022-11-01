@@ -47,8 +47,8 @@
         border: none;
     }
     button{
-        padding: .05em 1em;
-        border-radius: .3em;
+        padding: .3em 1.3em;
+        border-radius: .35em;
         line-height: 1.5;
         color: var(--button-text-color);
         background-color: var(--button-bg-color);
@@ -57,7 +57,10 @@
         background-color: var(--button-bg-active-color);
         color: var(--button-text-active-color);
     }
-
+    .button-wrapper{
+        display: flex;
+        gap: 1em;
+    }
 </style>
 <body>
 
@@ -66,7 +69,10 @@
             <input multiple type="file" id="myfiles" name="myfiles">
         </label> 
         <textarea id="output"></textarea>
-        <button onclick="myFunction()">Copy</button>
+        <div class="button-wrapper">
+            <button onclick="myFunction()">Copy</button>
+            <button onclick="clearTextarea()">Clear</button>
+        </div>
     <div>
     
     <script>
@@ -92,6 +98,9 @@
             textarea.setSelectionRange(0, 99999);
             document.execCommand('copy');
             document.body.removeChild(textarea);
+        }
+        function clearTextarea(){
+            output.value = "";
         } 
 
     </script>
