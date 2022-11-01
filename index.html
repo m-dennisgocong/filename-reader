@@ -14,11 +14,21 @@
         margin: 0;
         box-sizing: border-box;
     }
+    :root{
+        --main-bg-color: #EAEAEA;
+        --text-color: #000;
+
+        --button-text-color: #fff;
+        --button-bg-color: #3C4048;
+        --button-text-active-color: #000;
+        --button-bg-active-color: #fff;
+    }
     body{
         display: grid;
         place-content: center;
         height: 100vh;
         width: 100vw;
+        background-color: var(--main-bg-color);
     }
     .container{
         display: flex;
@@ -28,6 +38,7 @@
     }
     label{
        font-size: 1.2rem;
+       color: var(--text-color);
     }
     #output{
         height: 50vh;
@@ -36,16 +47,20 @@
         border: none;
     }
     button{
-        padding: .05em 1em;
-        border-radius: .3em;
+        padding: .3em 1.3em;
+        border-radius: .35em;
         line-height: 1.5;
-        margin-top: 1em;
+        color: var(--button-text-color);
+        background-color: var(--button-bg-color);
     }
     button:active{
-        background-color: #fff;
-        color: #333;
+        background-color: var(--button-bg-active-color);
+        color: var(--button-text-active-color);
     }
-
+    .button-wrapper{
+        display: flex;
+        gap: 1em;
+    }
 </style>
 <body>
 
@@ -54,7 +69,10 @@
             <input multiple type="file" id="myfiles" name="myfiles">
         </label> 
         <textarea id="output"></textarea>
-        <button onclick="myFunction()">Copy</button>
+        <div class="button-wrapper">
+            <button onclick="myFunction()">Copy</button>
+            <button onclick="clearTextarea()">Clear</button>
+        </div>
     <div>
     
     <script>
@@ -80,6 +98,9 @@
             textarea.setSelectionRange(0, 99999);
             document.execCommand('copy');
             document.body.removeChild(textarea);
+        }
+        function clearTextarea(){
+            output.value = "";
         } 
 
     </script>
