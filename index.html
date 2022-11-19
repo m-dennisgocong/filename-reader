@@ -88,12 +88,13 @@
             for(let i=0; i < files.length; i++){
                 output.value += files[i].name.split('.')[0]+"\n"
             }
+            output.value = output.value.trim(); // remove whitespace
         });
 
         function myFunction() {
             const textarea = document.createElement('textarea');
             document.body.appendChild(textarea);
-            textarea.value = output.value;
+            textarea.value = output.value.trim();
             textarea.select();
             textarea.setSelectionRange(0, 99999);
             document.execCommand('copy');
