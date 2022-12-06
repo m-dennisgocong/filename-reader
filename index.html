@@ -70,7 +70,7 @@
         </label> 
         <textarea id="output"></textarea>
         <div class="button-wrapper">
-            <button onclick="myFunction()">Copy</button>
+            <button onclick="copyFileNames()">Copy</button>
             <button onclick="clearTextarea()">Clear</button>
         </div>
     <div>
@@ -91,7 +91,8 @@
             output.value = output.value.trim(); // remove whitespace
         });
 
-        function myFunction() {
+        function copyFileNames() {
+            // copy the selected file names
             const textarea = document.createElement('textarea');
             document.body.appendChild(textarea);
             textarea.value = output.value.trim();
